@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 16:10:08 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/09 17:41:14 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/10 16:41:23 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	is_good_wall_and_shape(char **map)
 	else if (!is_good_wall(map))
 	{
 		ft_printf("Erreur\nMap non valide!\nLes murs sont pas bon!\n");
+		return (0);
 	}
 	return (1);
 }
