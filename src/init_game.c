@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:30:37 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/10 19:29:40 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/10 21:59:28 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,11 @@ static void	print_map(t_game *game)
 
 void	load_img(t_game *game)
 {
-	game->img_coin = mlx_xpm_file_to_image(game->mlx, "assets/coin.xpm", &game->img_width, &game->img_height);
+	game->img_coin = mlx_xpm_file_to_image(game->mlx, "assets/coin1.xpm", &game->img_width, &game->img_height);
 	game->img_wall = mlx_xpm_file_to_image(game->mlx, "assets/wall.xpm", &game->img_width, &game->img_height);
-	if (!game->img_coin)
-	{
-		ft_printf("Impossible de charger l'image\n");
-		exit(1);
-	}
+	game->img_floor = mlx_xpm_file_to_image(game->mlx, "assets/floor.xpm", &game->img_width, &game->img_height);
+	game->img_exit = mlx_xpm_file_to_image(game->mlx, "assets/exit.xpm", &game->img_width, &game->img_height);
+	game->img_player = mlx_xpm_file_to_image(game->mlx, "assets/player.xpm", &game->img_width, &game->img_height);
 }
 
 void	render_map(t_game *game)
@@ -48,10 +46,15 @@ void	render_map(t_game *game)
 		x = 0;
 		while (game->map[y][x])
 		{
+			mlx_put_image_to_window(game->mlx, game->win, game->img_floor, x * IMG_CUB, y * IMG_CUB);
 			if (game->map[y][x] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win, game->img_coin, x * 64, y * 64);
+				mlx_put_image_to_window(game->mlx, game->win, game->img_coin, x * IMG_CUB, y * IMG_CUB);
 			else if (game->map[y][x] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, game->img_wall, x * 64, y * 64);
+				mlx_put_image_to_window(game->mlx, game->win, game->img_wall, x * IMG_CUB, y * IMG_CUB);
+			else if (game->map[y][x] == 'E')
+				mlx_put_image_to_window(game->mlx, game->win, game->img_exit, x * IMG_CUB, y * IMG_CUB);
+			else if (game->map[y][x] == 'P')
+				mlx_put_image_to_window(game->mlx, game->win, game->img_player, x * IMG_CUB, y * IMG_CUB);
 			x++;
 		}
 		y++;

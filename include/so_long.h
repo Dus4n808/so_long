@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:25:53 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/10 18:59:43 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/10 21:51:21 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include "../mlx/mlx.h"
+# define IMG_CUB 64
 
 typedef struct s_game
 {
@@ -45,6 +46,7 @@ typedef struct s_game
 char	**read_map(char *file);
 int		is_good_wall_and_shape(char **map);
 int		is_valid_map(char **map);
+int		check_extension(char *filename);
 //Utile
 void	free_game(t_game *game);
 void	free_map(char **map);
