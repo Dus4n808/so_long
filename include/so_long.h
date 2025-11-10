@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:25:53 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/10 21:51:21 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/10 23:00:21 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ void	get_player_pos(t_game *game);
 void	init_struct(char **map, t_game *game);
 void	load_img(t_game *game);
 void	render_map(t_game *game);
-
+//Move
+int	move_handler(t_game *game, int key);
+void	move_player(t_game *game, int new_y, int new_x);
 
 
 #endif

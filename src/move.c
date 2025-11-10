@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:08:33 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/10 17:13:23 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/10 22:58:44 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,13 @@ void	move_player(t_game *game, int new_y, int new_x)
 	game->map[new_y][new_x] = 'P';
 	game->player_y = new_y;
 	game->player_x = new_x;
+	render_map(game);
+}
+
+int	move_handler(t_game *game, int key)
+{
+	if (key == 13) //haut
+		move_player(game, game->player_y - 1, game->player_x);
+	return (0);
+
 }
