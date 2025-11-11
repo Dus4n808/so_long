@@ -6,7 +6,7 @@
 #    By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/09 15:17:50 by dufama            #+#    #+#              #
-#    Updated: 2025/11/10 19:03:59 by dufama           ###   ########.fr        #
+#    Updated: 2025/11/11 09:09:57 by dufama           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,11 @@ RM = rm -f
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-MLX_DIR = ./mlx
-MLX = $(MLX_DIR)/libmlx.a
+MLX_DIR_LINUX = ./mlx_linux
+MLX_LINUX = $(MLX_DIR_LINUX)
+
+MLX_DIR_MAC = ./mlx
+MLX_MAC = $(MLX_DIR_MAC)/libmlx.a
 
 .c.o:
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -40,6 +43,7 @@ $(NAME): $(OBJS)
 	@$(MAKE) -s -C $(LIBFT_DIR)
 	@$(MAKE) -s -C $(MLX_DIR)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 all: $(NAME)
 

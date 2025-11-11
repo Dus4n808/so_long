@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:25:53 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/10 23:00:21 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/11 09:05:37 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <stdlib.h>
-# include "../mlx/mlx.h"
+# include "../mlx_linux/mlx.h"
 # define IMG_CUB 64
 
 typedef struct s_game
