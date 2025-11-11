@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:25:53 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/11 09:05:37 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/11 18:17:47 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <stdlib.h>
+# ifdef __APPLE__
+# include "../mlx/mlx.h"
+# else
 # include "../mlx_linux/mlx.h"
+# endif
 # define IMG_CUB 64
 
 typedef struct s_game
@@ -59,8 +63,10 @@ void	init_struct(char **map, t_game *game);
 void	load_img(t_game *game);
 void	render_map(t_game *game);
 //Move
-int	move_handler(t_game *game, int key);
+int		move_handler(t_game *game, int key);
 void	move_player(t_game *game, int new_y, int new_x);
+//test
+int	key_hook(int keycode, t_game *game);
 
 
 #endif

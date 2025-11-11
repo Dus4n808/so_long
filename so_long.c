@@ -6,11 +6,18 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:34:20 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/10 21:16:51 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/11 18:23:35 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/so_long.h"
+
+int	key_hook(int keycode, t_game *game)
+{
+	(void)game;
+	ft_printf("Key hooks : %d\n", keycode);
+	return (0);
+}
 
 
 int	main(int argc, char **argv)
@@ -49,6 +56,7 @@ int	main(int argc, char **argv)
 	load_img(&game);
 	render_map(&game);
 	ft_printf("Position du joueur x : %d et y : %d\n", game.player_x, game.player_y);
+	mlx_key_hook(game.win, key_hook, &game);
 	mlx_loop(game.mlx);
 
 	return (0);

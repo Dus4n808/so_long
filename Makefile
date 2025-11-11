@@ -6,7 +6,7 @@
 #    By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/09 15:17:50 by dufama            #+#    #+#              #
-#    Updated: 2025/11/11 09:21:18 by dufama           ###   ########.fr        #
+#    Updated: 2025/11/11 18:20:54 by dufama           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ ifeq ($(UNAME_S), Linux)
 	MLX_FLAGS = -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 else ifeq ($(UNAME_S), Darwin)
 	MLX_DIR = ./mlx
-	MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
+	MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 endif
 
 CFLAGS += -I $(MLX_DIR)
