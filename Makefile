@@ -6,7 +6,7 @@
 #    By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/09 15:17:50 by dufama            #+#    #+#              #
-#    Updated: 2025/11/11 09:09:57 by dufama           ###   ########.fr        #
+#    Updated: 2025/11/11 09:21:18 by dufama           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,20 +30,26 @@ RM = rm -f
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-MLX_DIR_LINUX = ./mlx_linux
-MLX_LINUX = $(MLX_DIR_LINUX)
+UNAME_S := $(shell uname -s)
 
-MLX_DIR_MAC = ./mlx
-MLX_MAC = $(MLX_DIR_MAC)/libmlx.a
+ifeq ($(UNAME_S), Linux)
+	MLX_DIR = ./mlx_linux
+	MLX_FLAGS = -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+else ifeq ($(UNAME_S), Darwin)
+	MLX_DIR = ./mlx
+	MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
+endif
+
+CFLAGS += -I $(MLX_DIR)
 
 .c.o:
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
+	@echo "Compilation pour $(UNAME_S)"
 	@$(MAKE) -s -C $(LIBFT_DIR)
 	@$(MAKE) -s -C $(MLX_DIR)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 
 all: $(NAME)
 
