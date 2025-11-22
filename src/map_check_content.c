@@ -6,13 +6,13 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 17:37:45 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/09 17:56:18 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/22 21:18:56 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-static int	check_char(char **map)
+static void	check_char(char **map)
 {
 	int	i;
 	int	j;
@@ -24,18 +24,14 @@ static int	check_char(char **map)
 		while (map[i][j])
 		{
 			if (!ft_strchr("01CPE", map[i][j]))
-			{
-				ft_printf("Erreur\nCaractère invalide!\n");
-				return (0);
-			}
+				error_msg_and_free("Caratère invalid\n", map);
 			j++;
 		}
 		i++;
 	}
-	return (1);
 }
 
-static int	check_player(char **map)
+static void	check_player(char **map)
 {
 	int	i;
 	int	j;
@@ -55,11 +51,10 @@ static int	check_player(char **map)
 		i++;
 	}
 	if (player != 1)
-		return (ft_printf("Erreur\nNombre de joueurs\n"), 0);
-	return (1);
+		error_msg_and_free("Nombre de joueurs invalide\n", map);
 }
 
-static int	check_coin(char **map)
+static void	check_coin(char **map)
 {
 	int	i;
 	int	j;
@@ -79,11 +74,10 @@ static int	check_coin(char **map)
 		i++;
 	}
 	if (coin < 1)
-		return (ft_printf("Erreur\nNombres de coins\n"), 0);
-	return (1);
+		error_msg_and_free("Nombre de coin invalide\n", map);
 }
 
-static int	check_exit(char **map)
+static void	check_exit(char **map)
 {
 	int	i;
 	int	j;
@@ -103,17 +97,13 @@ static int	check_exit(char **map)
 		i++;
 	}
 	if (exit != 1)
-		return (ft_printf("Erreur\nNombre de sorties\n"), 0);
-	return (1);
+		error_msg_and_free("Nombre de sortie invalide\n", map);
 }
 
-int	is_valid_map(char **map)
+void	check_content(char **map)
 {
-	if (!is_good_wall_and_shape(map))
-		return (0);
-	if (!check_char(map))
-		return (0);
-	if (!check_coin(map) || !check_exit(map) || !check_player(map))
-		return (0);
-	return (1);
+	check_char(map);
+	check_coin(map);
+	check_exit(map);
+	check_player(map);
 }

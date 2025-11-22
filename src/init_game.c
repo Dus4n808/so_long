@@ -6,25 +6,12 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:30:37 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/10 21:59:28 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/22 21:09:04 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-static void	print_map(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	ft_printf("\n----- MAP CONTENT -----\n");
-	while (game->map[i])
-	{
-		ft_printf("%s\n", game->map[i]);
-		i++;
-	}
-	ft_printf("-----------------------\n");
-}
 
 void	load_img(t_game *game)
 {

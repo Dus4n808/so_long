@@ -6,11 +6,21 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:43:21 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/09 17:09:54 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/22 21:07:40 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+static int	check_extension(char *filename)
+{
+	char	*dot;
+
+	dot = ft_strrchr(filename, '.');
+	if (!dot)
+		return (0);
+	return (ft_strncmp(dot, ".ber", 5) == 0);
+}
 
 static int	count_line(char *file)
 {
@@ -33,7 +43,7 @@ static int	count_line(char *file)
 	return (count);
 }
 
-char	**read_map(char *file)
+static char	**read_map(char *file)
 {
 	int		fd;
 	int		lines;
@@ -58,5 +68,20 @@ char	**read_map(char *file)
 	}
 	map[i] = NULL;
 	close(fd);
+	return (map);
+}
+
+char	**read_and_stock_map(char *filename)
+{
+	char	**map;
+
+	if (!check_extension(filename))
+	{
+		ft_putstr_fd("Erreur de format\n", 2);
+		exit (1);
+	}
+	map = read_map(filename);
+	if (!map)
+		error_msg_and_free("Erreur lors du chargement de la map\n", map);
 	return (map);
 }

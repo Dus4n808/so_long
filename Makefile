@@ -6,7 +6,7 @@
 #    By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/09 15:17:50 by dufama            #+#    #+#              #
-#    Updated: 2025/11/11 18:20:54 by dufama           ###   ########.fr        #
+#    Updated: 2025/11/22 21:35:50 by dufama           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ SRCS = so_long.c \
 		src/map_read.c \
 		src/map_check_shape.c \
 		src/map_check_content.c \
+		src/map_check_solvable.c \
 		src/so_long_utils.c \
 		src/init_game.c \
 		src/get_info.c \

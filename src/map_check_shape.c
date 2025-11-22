@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check_shape.c                                  :+:      :+:    :+:   */
+/*   map_check1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 16:10:08 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/10 21:06:50 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/22 21:11:21 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-static int	is_rectangular(char **map)
+static void	is_rectangular(char **map)
 {
 	int	width;
 	int	height;
@@ -23,16 +23,15 @@ static int	is_rectangular(char **map)
 	while (map[i])
 	{
 		if ((int)ft_strlen(map[i]) != width)
-			return (0);
+			error_msg_and_free("The map is not rectangular\n", map);
 		i++;
 	}
 	height = i;
 	if (width == height)
-		return (0);
-	return (1);
+		error_msg_and_free("The map is not rectangular\n", map);
 }
 
-static int	is_good_wall(char **map)
+static void	is_good_wall(char **map)
 {
 	int	height;
 	int	width;
@@ -46,40 +45,20 @@ static int	is_good_wall(char **map)
 	while (i < width)
 	{
 		if (map[0][i] != '1' || map[height - 1][i] != '1')
-			return (0);
+			error_msg_and_free("Not good wall\n", map);
 		i++;
 	}
 	i = 0;
 	while (i < height)
 	{
 		if (map[i][0] != '1' || map[i][width - 1] != '1')
-			return (0);
+			error_msg_and_free("Not good wall\n", map);
 		i++;
 	}
-	return (1);
 }
 
-int	is_good_wall_and_shape(char **map)
+void	check_shape_map(char **map)
 {
-	if (!is_rectangular(map))
-	{
-		ft_printf("Erreur\nMap non valide!\nN'est pas réctangulaire\n");
-		return (0);
-	}
-	else if (!is_good_wall(map))
-	{
-		ft_printf("Erreur\nMap non valide!\nLes murs sont pas bon!\n");
-		return (0);
-	}
-	return (1);
-}
-
-int	check_extension(char *filename)
-{
-	char	*dot;
-
-	dot = ft_strrchr(filename, '.');
-	if (!dot)
-		return (0);
-	return (ft_strncmp(dot, ".ber", 5) == 0);
+	is_rectangular(map);
+	is_good_wall(map);
 }

@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:25:53 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/11 18:17:47 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/22 21:35:22 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,17 @@ typedef struct s_game
 	int		img_width;
 	int		img_height;
 } t_game ;
-
+// a supprimer apres
+void	print_map(t_game *game);
 // Read et check
-char	**read_map(char *file);
-int		is_good_wall_and_shape(char **map);
-int		is_valid_map(char **map);
-int		check_extension(char *filename);
+char	**read_and_stock_map(char *filename);
+void	check_shape_map(char **map);
+void	check_content(char **map);
+void	check_solvable(char **map);
 //Utile
 void	free_game(t_game *game);
 void	free_map(char **map);
+void	error_msg_and_free(char *msg, char **map);
 //Get info
 int		get_height(t_game *game);
 int		get_content(t_game *game, char content);
