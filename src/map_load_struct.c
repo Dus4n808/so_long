@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_info.c                                         :+:      :+:    :+:   */
+/*   map_load_struct.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 16:16:07 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/10 16:18:14 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/23 18:14:42 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int	get_height(t_game *game)
+static int	get_height(t_game *game)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ int	get_height(t_game *game)
 	return (i);
 }
 
-int	get_content(t_game *game, char content)
+static int	get_content(t_game *game, char content)
 {
 	int	i;
 	int	j;
@@ -44,7 +44,7 @@ int	get_content(t_game *game, char content)
 	return (count);
 }
 
-void	get_player_pos(t_game *game)
+static void	get_player_pos(t_game *game)
 {
 	int	x;
 	int	y;
@@ -65,4 +65,15 @@ void	get_player_pos(t_game *game)
 		}
 		y++;
 	}
+}
+
+void	init_struct(t_game *game)
+{
+	game->move = 0;
+	game->height = get_height(game);
+	game->width = ft_strlen(game->map[0]);
+	game->coin = get_content(game, 'C');
+	game->player = get_content(game, 'P');
+	game->exit = get_content(game, 'E');
+	get_player_pos(game);
 }

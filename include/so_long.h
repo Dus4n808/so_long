@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:25:53 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/22 21:35:22 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/23 18:39:54 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_game
 	int		width;
 	int		player_x;
 	int		player_y;
+	int		move;
 
 	void	*mlx;
 	void	*win;
@@ -53,22 +54,18 @@ void	check_shape_map(char **map);
 void	check_content(char **map);
 void	check_solvable(char **map);
 //Utile
-void	free_game(t_game *game);
+void	clean_game(t_game *game);
 void	free_map(char **map);
 void	error_msg_and_free(char *msg, char **map);
-//Get info
-int		get_height(t_game *game);
-int		get_content(t_game *game, char content);
-void	get_player_pos(t_game *game);
-//init
-void	init_struct(char **map, t_game *game);
+
+//init struct
+void	init_struct(t_game *game);
+//init graphic
 void	load_img(t_game *game);
 void	render_map(t_game *game);
 //Move
-int		move_handler(t_game *game, int key);
-void	move_player(t_game *game, int new_y, int new_x);
-//test
-int	key_hook(int keycode, t_game *game);
+int		key_hook(int keycode, t_game *game);
+
 
 
 #endif

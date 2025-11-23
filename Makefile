@@ -6,7 +6,7 @@
 #    By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/09 15:17:50 by dufama            #+#    #+#              #
-#    Updated: 2025/11/22 21:35:50 by dufama           ###   ########.fr        #
+#    Updated: 2025/11/23 17:56:01 by dufama           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,9 @@ SRCS = so_long.c \
 		src/map_check_shape.c \
 		src/map_check_content.c \
 		src/map_check_solvable.c \
+		src/map_load_struct.c \
+		src/map_load_graphic.c \
 		src/so_long_utils.c \
-		src/init_game.c \
-		src/get_info.c \
 		src/move.c \
 
 OBJS = $(SRCS:.c=.o)
