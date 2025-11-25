@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:34:20 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/23 18:40:21 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/25 17:28:46 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 
 	init_struct(&game);
 	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, game.width * IMG_CUB, game.height * IMG_CUB, "CrackHead");
+	game.win = mlx_new_window(game.mlx, game.width * IMG_CUB, game.height * IMG_CUB, "Coucou");
 	load_img(&game);
 	render_map(&game);
 	mlx_key_hook(game.win, key_hook, &game);
