@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:34:20 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/25 17:28:46 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/28 16:48:48 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,18 @@ int	main(int argc, char **argv)
 	check_shape_map(game.map);
 	check_content(game.map);
 	check_solvable(game.map);
+	free(game.map);
 
 	//print_map(&game);
 
 
-	init_struct(&game);
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, game.width * IMG_CUB, game.height * IMG_CUB, "Coucou");
-	load_img(&game);
-	render_map(&game);
-	mlx_key_hook(game.win, key_hook, &game);
-	mlx_loop(game.mlx);
+	// init_struct(&game);
+	// game.mlx = mlx_init();
+	// game.win = mlx_new_window(game.mlx, game.width * IMG_CUB, game.height * IMG_CUB, "Coucou");
+	// load_img(&game);
+	// render_map(&game);
+	// mlx_key_hook(game.win, key_hook, &game);
+	// mlx_loop(game.mlx);
 
 	return (0);
 }
