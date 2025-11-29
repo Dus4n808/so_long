@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:08:33 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/25 17:27:53 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/29 15:19:07 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ static void	move_player(t_game *game, int new_y, int new_x)
 
 static int	move_handler(t_game *game, int key)
 {
-	if (key == 119) //haut
+	if (key == KEY_W || key == KEY_UP) //haut
 		move_player(game, game->player_y - 1, game->player_x);
-	if (key == 115) // bas
+	else if (key == KEY_S || key == KEY_DOWN) // bas
 		move_player(game, game->player_y + 1, game->player_x);
-	if (key == 97)
+	else if (key == KEY_A || key == KEY_LEFT)
 		move_player(game, game->player_y, game->player_x - 1);
-	if (key == 100)
+	else if (key == KEY_D || key == KEY_RIGHT)
 		move_player(game, game->player_y, game->player_x + 1);
-	if (key == 65307)
+	if (key == KEY_ESC)
 	{
 		clean_game(game);
 		exit (1);

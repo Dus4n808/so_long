@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:43:21 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/28 16:49:45 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/29 15:07:30 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,31 @@ static int	count_line(char *file)
 	return (count);
 }
 
+static char	**fill_map(int fd, int lines)
+{
+	char	**map;
+	char	*tmp;
+	int		i;
+
+	map = malloc(sizeof(char *) * (lines + 1));
+	if (!map)
+		return (NULL);
+	i = 0;
+	while (i < lines)
+	{
+		tmp = get_next_line(fd);
+		map[i] = ft_strtrim(tmp, "\n");
+		free(tmp);
+		i++;
+	}
+	map[i] = NULL;
+	return (map);
+}
+
 static char	**read_map(char *file)
 {
 	int		fd;
 	int		lines;
-	int		i;
 	char	**map;
 
 	lines = count_line(file);
@@ -56,17 +76,7 @@ static char	**read_map(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
-	map = malloc(sizeof(char *) * (lines + 1));
-	if (!map)
-		return (NULL);
-	i = 0;
-	while (i < lines)
-	{
-		map[i] = get_next_line(fd);
-		map[i] = ft_strtrim(map[i], "\n");
-		i++;
-	}
-	map[i] = NULL;
+	map = fill_map(fd, lines);
 	close(fd);
 	return (map);
 }
