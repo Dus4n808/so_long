@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 14:46:40 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/03 11:52:40 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/03 14:15:50 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ static void	flood_fill(char **map, int x, int y)
 {
 	if (map[y][x] == '1' || map[y][x] == 'V')
 		return ;
+	if (map[y][x] == 'E')
+	{
+		map[y][x] = 'V';
+		return ;
+	}
 	map[y][x] = 'V';
 	flood_fill(map, x + 1, y);
 	flood_fill(map, x - 1, y);
@@ -104,7 +109,7 @@ void	check_solvable(char **map)
 
 	copy = duplicate_map(map);
 	if (!copy)
-		error_msg_and_free("Duplication impossible\n", map);
+		error_msg_and_free("Dup impossible\n", map);
 	find_player(map, &y, &x);
 	flood_fill(copy, x, y);
 	if (!check_after_flood_fill(copy))
